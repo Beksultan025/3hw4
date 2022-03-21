@@ -26,9 +26,7 @@
      app:stiffness="300"
      android:layout_marginBottom="32dp"
      app:layout_constraintBottom_toBottomOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintEnd_toEndOf="parent"
-     />
+     app:layout_constraintStart_toStartOf="parent" />
 
  <TextView
      android:id="@+id/skipped"

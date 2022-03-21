@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homwork2.R;
+import com.example.homwork2.databinding.ItemNewsBinding;
 import com.example.homwork2.models.Board;
 
 import java.util.ArrayList;
@@ -25,9 +26,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
 
     public BoardAdapter() {
         list = new ArrayList<>();
-        list.add(new Board("Салам", "Бул меним үй ишим", R.drawable.ic_one_puch_man));
-        list.add(new Board("Привет", "За эту домашку можно поставить 10 баллов", R.drawable.ic_dio));
-        list.add(new Board("Hello", "You can visit my homework", R.drawable.ic_human));
+        list.add(new Board("Фаст Фуд", "Добро пожаловать!", R.drawable.ic_fastfod));
+        list.add(new Board("Машина", "Бексултан ТОП", R.drawable.ic_car));
+        list.add(new Board("Копилка", "Бексултан ТОП", R.drawable.kopilka));
     }
 
 
@@ -50,10 +51,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         private Button btn_start;
         private TextView textTitle;
         private TextView textInfo;
         private ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);

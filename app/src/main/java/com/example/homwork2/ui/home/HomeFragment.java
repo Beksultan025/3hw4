@@ -57,7 +57,8 @@ public class HomeFragment extends Fragment  {
                 open(null);
             }
         });
-        getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
+        getParentFragmentManager().setFragmentResultListener("rk_news"
+                , getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 News news = (News) result.getSerializable("news");

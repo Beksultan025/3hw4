@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_board.xml" value="0.18034447821681865" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_dashboard.xml" value="0.18034447821681865" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_news.xml" value="0.18034447821681865" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_notifications.xml" value="0.18034447821681865" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/fragment_profile.xml" value="0.18034447821681865" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/item_news.xml" value="0.18262411347517732" />
+        <entry key="..\:/Android Studip Projects/homwork2/app/src/main/res/layout/pager_board.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/matay/AndroidStudioProjects/homwork2/app/src/main/res/drawable/default_dot.xml" value="0.1195" />
         <entry key="..\:/Users/matay/AndroidStudioProjects/homwork2/app/src/main/res/drawable/ic_add.xml" value="0.1195" />
         <entry key="..\:/Users/matay/AndroidStudioProjects/homwork2/app/src/main/res/drawable/selected_dot.xml" value="0.1195" />
