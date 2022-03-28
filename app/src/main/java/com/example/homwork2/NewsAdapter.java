@@ -29,7 +29,6 @@ import java.util.Locale;
 @SuppressLint("NotifyDataSetChanged")
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private ArrayList<News> list;
-    private News news;
     private OnClickListener onClickListener;
 
     public NewsAdapter(ArrayList<News> list) {
@@ -62,10 +61,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         return list.size();
     }
 
-    public void filterList(ArrayList<News> filteredList) {
-        list = filteredList;
-        notifyDataSetChanged();
-    }
     public void addItem(News news) {
         list.add(0, news);
         notifyItemInserted(list.indexOf(news));

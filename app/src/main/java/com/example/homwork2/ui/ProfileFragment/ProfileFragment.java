@@ -36,7 +36,6 @@ public class ProfileFragment extends Fragment {
                 public void onActivityResult(Uri uri) {
                     Glide.with(binding.image).load(uri).into(binding.image);
                     prefs.saveImage(uri);
-
                 }
             });
 

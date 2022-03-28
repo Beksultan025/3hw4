@@ -134,17 +134,6 @@ public class HomeFragment extends Fragment  {
         adapter.setList(data);
     }
 
-
-    private void filter(String text) {
-        ArrayList<News> filteredList = new ArrayList<>();
-        for (News item : data) {
-            if (item.getTitle().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(item);
-            }
-        }
-        adapter.filterList(filteredList);
-    }
-
     private void open(News news) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         Bundle bundle = new Bundle();
