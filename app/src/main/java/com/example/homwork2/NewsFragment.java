@@ -18,8 +18,10 @@ import com.example.homwork2.models.News;
 
 
 public class NewsFragment extends Fragment {
+
     private FragmentNewsBinding binding;
     private News news;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,7 +40,6 @@ public class NewsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 save();
-
             }
         });
     }
@@ -52,10 +53,10 @@ public class NewsFragment extends Fragment {
         }
         if (news == null) {
             news = new News(text, System.currentTimeMillis());
-        }else {
+        } else {
             news.setTitle(text);
         }
-
+        App.getDatabase().newsDao().insert(news);
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
         close();
@@ -65,5 +66,4 @@ public class NewsFragment extends Fragment {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();
     }
-
 }

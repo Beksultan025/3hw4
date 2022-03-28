@@ -30,9 +30,9 @@
 
  <TextView
      android:id="@+id/skipped"
-     android:text="Skip"
-     android:layout_margin="12dp"
-     android:textSize="12dp"
+     android:padding="16dp"
+     android:text="SKIP"
+     android:textSize="22sp"
      android:textColor="@color/gray"
      app:layout_constraintTop_toTopOf="parent"
      app:layout_constraintEnd_toEndOf="parent"

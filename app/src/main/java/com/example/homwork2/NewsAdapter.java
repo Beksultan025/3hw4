@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,31 +21,40 @@ import com.example.homwork2.models.News;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 @SuppressLint("NotifyDataSetChanged")
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private ArrayList<News> list;
+    private News news;
     private OnClickListener onClickListener;
 
-    public NewsAdapter() {
-        this.list = new ArrayList<>();
+    public NewsAdapter(ArrayList<News> list) {
+        this.list = list;
+    }
+
+    public void setList(ArrayList<News> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NewsViewHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.getContext()), parent , false));
+        return new NewsViewHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-    holder.bind(list.get(position));
-    if (position % 2 == 0){
-        holder.binding.title.setBackgroundColor(Color.GRAY);
-    }else{
-        holder.binding.title.setBackgroundColor(Color.BLACK);
-    }
+        holder.bind(list.get(position));
+        if (position % 2 == 0) {
+            holder.binding.title.setBackgroundColor(Color.GRAY);
+        } else {
+            holder.binding.title.setBackgroundColor(Color.BLACK);
+        }
     }
 
     @Override
@@ -52,6 +62,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         return list.size();
     }
 
+    public void filterList(ArrayList<News> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
+    }
     public void addItem(News news) {
         list.add(0, news);
         notifyItemInserted(list.indexOf(news));
@@ -71,6 +85,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         notifyItemChanged(position);
     }
 
+    public void addList(List<News> list) {
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
 
     class NewsViewHolder extends RecyclerView.ViewHolder {
         ItemNewsBinding binding;
@@ -87,25 +105,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
                 }
             });
-            binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    onClickListener.onItemLongClick(getAdapterPosition());
-                    new AlertDialog.Builder(view.getContext()).setTitle("Удаление")
-                            .setMessage("Вы точно хотите удалить?")
-                            .setNegativeButton("нет", null)
-                            .setPositiveButton("да", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(view.getContext(), "Delete", Toast.LENGTH_LONG).show();
-                                    list.remove(getAdapterPosition());
-                                    notifyDataSetChanged();
-
-                                }
-                            }).show();
-                    return true;
-                }
-            });
         }
 
         public void bind(News news) {
@@ -113,8 +112,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss, dd MMM yyyy", Locale.ROOT);
             String date = String.valueOf(simpleDateFormat.format(news.getCreatedAt()));
             binding.tvTime.setText(date);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    onClickListener.onItemLongClick(getAdapterPosition(), news);
+                    return true;
+                }
+            });
         }
     }
 
-    }
+}
 
