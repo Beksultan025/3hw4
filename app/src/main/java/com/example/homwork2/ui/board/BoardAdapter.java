@@ -62,7 +62,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
             textTitle = itemView.findViewById(R.id.textTitle);
             btn_start = itemView.findViewById(R.id.btnStart);
             textInfo = itemView.findViewById(R.id.text_info);
-            imageView = itemView.findViewById(R.id.image_view);
+            imageView = itemView.findViewById(R.id.animationView);
             btn_start.setOnClickListener(view -> {
             finishBoard.btnClickFinishBoard();
             });
@@ -72,7 +72,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
             Board board= list.get(position);
             textTitle.setText(board.getTitle());
             textInfo.setText(board.getDesc());
-            imageView.setImageResource(board.getImage());
             if (position == list.size() - 1){
                 btn_start.setVisibility(View.VISIBLE);
             }else{

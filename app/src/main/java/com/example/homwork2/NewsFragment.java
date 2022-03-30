@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.homwork2.databinding.FragmentNewsBinding;
 import com.example.homwork2.models.News;
 
@@ -33,6 +36,13 @@ public class NewsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (binding.EditText.getText().toString().isEmpty()) {
+            YoYo.with(Techniques.Tada)
+                    .duration(500)
+                    .repeat(7)
+                    .playOn(view.findViewById(R.id.EditText));
+        }
+
         news = (News) requireArguments().getSerializable("updateTask");
         if (news != null) binding.EditText.setText(news.getTitle());
 

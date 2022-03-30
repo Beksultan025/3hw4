@@ -26,10 +26,15 @@ import com.example.homwork2.Prefs;
 import com.example.homwork2.R;
 import com.example.homwork2.databinding.FragmentProfileBinding;
 
+import java.util.ArrayList;
+
 
 public class ProfileFragment extends Fragment {
     private Prefs prefs;
     private FragmentProfileBinding binding;
+    private ProfileAdapter adapter;
+    private ArrayList<Model> data;
+
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
@@ -55,12 +60,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loadData();
+        adapter = new ProfileAdapter(data);
+        binding.recycleProfile.setAdapter(adapter);
         prefs = new Prefs(requireContext());
         if (prefs.isEditText() != null) {
             binding.EditTextProfile.setText(prefs.isEditText());
         }
-        if (prefs.isImage()!= null){
-           Glide.with(binding.image).load(prefs.isImage()).into(binding.image);
+        if (prefs.isImage() != null) {
+            Glide.with(binding.image).load(prefs.isImage()).into(binding.image);
         }
 
         binding.image.setOnClickListener(new View.OnClickListener() {
@@ -89,10 +97,29 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void loadData() {
+        data = new ArrayList<>();
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+        data.add(new Model(R.drawable.img , R.drawable.img_1 , R.drawable.img_2));
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater menuInflater = requireActivity().getMenuInflater();
-        menuInflater.inflate(tochki , menu);
+        menuInflater.inflate(tochki, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 }
