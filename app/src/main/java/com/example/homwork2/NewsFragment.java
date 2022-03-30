@@ -49,7 +49,15 @@ public class NewsFragment extends Fragment {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save();
+                String text = binding.EditText.getText().toString().trim();
+                if (text.isEmpty()) {
+                    YoYo.with(Techniques.Tada)
+                            .duration(500)
+                            .repeat(7)
+                            .playOn(view.findViewById(R.id.EditText));
+                    Toast.makeText(requireContext(), "type task!", Toast.LENGTH_SHORT).show();
+                    save();
+                }
             }
         });
     }
