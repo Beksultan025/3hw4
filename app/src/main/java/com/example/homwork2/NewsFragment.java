@@ -52,7 +52,8 @@ public class NewsFragment extends Fragment {
         private void save () {
             Bundle bundle = new Bundle();
             String text = binding.EditText.getText().toString().trim();
-            if (text.isEmpty()) {
+            String text1 = binding.EditText.getText().toString();
+            if (text1.isEmpty()) {
                 YoYo.with(Techniques.Shake).duration(700).repeat(1).playOn(binding.EditText);
             }
             if (text.isEmpty()) {
