@@ -36,50 +36,43 @@ public class NewsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (binding.EditText.getText().toString().isEmpty()) {
+        news = (News) requireArguments().getSerializable("updateTask");
+
+            if (news != null) binding.EditText.setText(news.getTitle());
+
+        String text = binding.EditText.getText().toString();
+        if (text.isEmpty()) {
             YoYo.with(Techniques.Tada)
                     .duration(500)
                     .repeat(7)
                     .playOn(view.findViewById(R.id.EditText));
         }
 
-        news = (News) requireArguments().getSerializable("updateTask");
-        if (news != null) binding.EditText.setText(news.getTitle());
-
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String text = binding.EditText.getText().toString().trim();
-                if (text.isEmpty()) {
-                    YoYo.with(Techniques.Tada)
-                            .duration(500)
-                            .repeat(7)
-                            .playOn(view.findViewById(R.id.EditText));
-                    Toast.makeText(requireContext(), "type task!", Toast.LENGTH_SHORT).show();
+            binding.btnSave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     save();
                 }
+            });
+        }
+
+        private void save () {
+            Bundle bundle = new Bundle();
+            String text = binding.EditText.getText().toString().trim();
+            if (text.isEmpty()) {
+                Toast.makeText(requireContext(), "type task!", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
-    }
-
-    private void save() {
-        Bundle bundle = new Bundle();
-        String text = binding.EditText.getText().toString().trim();
-        if (text.isEmpty()) {
-            Toast.makeText(requireContext(), "type task!", Toast.LENGTH_SHORT).show();
-            return;
+            if (news == null) {
+                news = new News(text, System.currentTimeMillis());
+            } else {
+                news.setTitle(text);
+            }
+            App.getDatabase().newsDao().insert(news);
+            bundle.putSerializable("news", news);
+            getParentFragmentManager().setFragmentResult("rk_news", bundle);
+            close();
         }
-        if (news == null) {
-            news = new News(text, System.currentTimeMillis());
-        } else {
-            news.setTitle(text);
-        }
-        App.getDatabase().newsDao().insert(news);
-        bundle.putSerializable("news", news);
-        getParentFragmentManager().setFragmentResult("rk_news", bundle);
-        close();
-    }
-
     private void close() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();

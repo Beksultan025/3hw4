@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.homwork2.R;
 import com.example.homwork2.databinding.ItemNewsBinding;
 import com.example.homwork2.models.Board;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
     private ArrayList<Board> list;
     private FinishBoard finishBoard;
+    private final int[] lottie = new int [] {R.raw.anime_one};
 
     public void setFinishBoard(FinishBoard finishBoard) {
         this.finishBoard = finishBoard;
@@ -55,14 +57,14 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder>{
         private Button btn_start;
         private TextView textTitle;
         private TextView textInfo;
-        private ImageView imageView;
+        private LottieAnimationView animationView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             btn_start = itemView.findViewById(R.id.btnStart);
             textInfo = itemView.findViewById(R.id.text_info);
-            imageView = itemView.findViewById(R.id.animationView);
+            animationView = itemView.findViewById(R.id.animationView);
             btn_start.setOnClickListener(view -> {
             finishBoard.btnClickFinishBoard();
             });
