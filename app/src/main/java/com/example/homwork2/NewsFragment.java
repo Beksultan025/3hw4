@@ -40,13 +40,6 @@ public class NewsFragment extends Fragment {
 
             if (news != null) binding.EditText.setText(news.getTitle());
 
-        String text = binding.EditText.getText().toString();
-        if (text.isEmpty()) {
-            YoYo.with(Techniques.Tada)
-                    .duration(500)
-                    .repeat(7)
-                    .playOn(view.findViewById(R.id.EditText));
-        }
 
             binding.btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,6 +52,9 @@ public class NewsFragment extends Fragment {
         private void save () {
             Bundle bundle = new Bundle();
             String text = binding.EditText.getText().toString().trim();
+            if (text.isEmpty()) {
+                YoYo.with(Techniques.Shake).duration(700).repeat(1).playOn(binding.EditText);
+            }
             if (text.isEmpty()) {
                 Toast.makeText(requireContext(), "type task!", Toast.LENGTH_SHORT).show();
                 return;
