@@ -61,14 +61,19 @@ dependencies {
     //circle imageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
     //
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
 
     //FireBase
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
 
     def lottieVersion = "3.4.0"
-
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-firestore'
 }
